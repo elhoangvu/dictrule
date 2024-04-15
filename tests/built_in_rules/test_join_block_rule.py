@@ -15,7 +15,7 @@ class TestJoinBlockRule(unittest.TestCase):
     """Test method"""
 
     @staticmethod
-    def __rule_callback(
+    def _rule_callback(
         context: Optional[Context],
         rule: Union[str, Dict[str, Any]],
     ) -> str:
@@ -145,7 +145,7 @@ class TestJoinBlockRule(unittest.TestCase):
                     None,
                 ],
             },
-            rule_callback=TestJoinBlockRule.__rule_callback,
+            rule_callback=TestJoinBlockRule._rule_callback,
         )
         self.assertEqual(parsed, "eval_1.print_2.log_3.text_4..text_5..text_6.")
 

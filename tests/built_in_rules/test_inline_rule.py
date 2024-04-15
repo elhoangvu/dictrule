@@ -15,7 +15,7 @@ class TestInlineRule(unittest.TestCase):
     """Test class"""
 
     @staticmethod
-    def __rule_callback(
+    def _rule_callback(
         context: Optional[Context],
         rule: Union[str, Dict[str, Any]],
     ) -> str:
@@ -113,7 +113,7 @@ class TestInlineRule(unittest.TestCase):
                     },
                 ],
             },
-            rule_callback=TestInlineRule.__rule_callback,
+            rule_callback=TestInlineRule._rule_callback,
         )
         self.assertEqual(parsed, "eval_1print_2log_3")
 
@@ -142,7 +142,7 @@ class TestInlineRule(unittest.TestCase):
                     },
                 ],
             },
-            rule_callback=TestInlineRule.__rule_callback,
+            rule_callback=TestInlineRule._rule_callback,
         )
         self.assertEqual(parsed, "text_1text_2-text_3eval_1print_2log_3")
 

@@ -90,7 +90,7 @@ class CommentRule(Rule):
                     prefix (str): prefix for each line
                 """
 
-                self.__prefix = prefix
+                self._prefix = prefix
 
             @staticmethod
             @property
@@ -101,7 +101,7 @@ class CommentRule(Rule):
             def prefix(self) -> str:
                 """Getter for `prefix` property"""
 
-                return self.__prefix
+                return self._prefix
 
         class MultilineComment(Comment):
             """Multiline comment by comment open, comment close, and prefix for each line"""
@@ -167,20 +167,20 @@ class CommentRule(Rule):
                     Defaults to None.
             """
 
-            self.__singleline = singleline
-            self.__multiline = multiline
+            self._singleline = singleline
+            self._multiline = multiline
 
         @property
         def singleline(self) -> SinglelineComment:
             """Getter for `singleline` property"""
 
-            return self.__singleline
+            return self._singleline
 
         @property
         def multiline(self) -> MultilineComment:
             """Getter for `multiline` property"""
 
-            return self.__multiline
+            return self._multiline
 
     class Style(Enum):
         """Enumeration defining comment styles"""

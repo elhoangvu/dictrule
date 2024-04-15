@@ -88,15 +88,15 @@ class EvalRule(Rule):
                 value (Any): value of eval name
             """
 
-            self.__key = key
-            self.__value = value
+            self._key = key
+            self._value = value
 
         @property
         def name(self) -> str:
-            return self.__key
+            return self._key
 
         def run(self, cmd: str) -> Any:
-            return self.__value
+            return self._value
 
     class ContextCase(Context.Case):
         """`Context.Case` for `EvalRule`.
@@ -125,13 +125,13 @@ class EvalRule(Rule):
         def evaluator_list(self) -> List["EvalRule.Evaluable"]:
             """Getter for `evaluator_list` property"""
 
-            return self.__evaluator_list
+            return self._evaluator_list
 
         @property
         def fallback(self) -> Optional["EvalRule.Evaluable"]:
             """Getter for `fallback` property"""
 
-            return self.__fallback
+            return self._fallback
 
         def __init__(
             self,
@@ -146,8 +146,8 @@ class EvalRule(Rule):
                     Defaults to None.
             """
 
-            self.__evaluator_list = list(evaluators)
-            self.__fallback = fallback
+            self._evaluator_list = list(evaluators)
+            self._fallback = fallback
             nonprefix_evaluators: Dict[str, EvalRule.Evaluable] = {}
             prefix_evaluators: Dict[str, EvalRule.Evaluable] = {}
 
@@ -157,8 +157,8 @@ class EvalRule(Rule):
                 else:
                     nonprefix_evaluators[evaluator.name] = evaluator
 
-            self.__evaluators = nonprefix_evaluators
-            self.__prefix_evaluators = prefix_evaluators
+            self._evaluators = nonprefix_evaluators
+            self._prefix_evaluators = prefix_evaluators
 
         def eval(
             self,
@@ -173,21 +173,21 @@ class EvalRule(Rule):
                 Optional[Any]: Evaluated value.
             """
 
-            eval_rule = self.__evaluators.get(eval_name)
+            eval_rule = self._evaluators.get(eval_name)
             if not eval_rule:
-                eval_rule = self.__find_eval_by_prefix(
+                eval_rule = self._find_eval_by_prefix(
                     eval_name=eval_name,
                 )
 
             if not eval_rule:
-                if self.__fallback:
-                    return self.__fallback.run(eval_name)
+                if self._fallback:
+                    return self._fallback.run(eval_name)
                 return None
 
             return eval_rule.run(eval_name)
 
         @lru_cache(maxsize=1024)
-        def __find_eval_by_prefix(
+        def _find_eval_by_prefix(
             self,
             eval_name: str,
         ) -> Optional["EvalRule.Evaluable"]:
@@ -200,7 +200,7 @@ class EvalRule(Rule):
                 Optional[EvalRule.Evaluable]: The evaluator found by prefix.
             """
 
-            for name, evaluator in self.__prefix_evaluators.items():
+            for name, evaluator in self._prefix_evaluators.items():
                 if eval_name.startswith(name):
                     return evaluator
 

@@ -31,12 +31,12 @@ class TestForInRule(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
-            return self.__name
+            return self._name
 
         def run(self, cmd: str) -> Any:
             """Test method"""
@@ -54,12 +54,12 @@ class TestForInRule(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
-            return self.__name
+            return self._name
 
         class Obj:
             """Test class"""
@@ -89,12 +89,12 @@ class TestForInRule(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
-            return self.__name
+            return self._name
 
         def run(self, cmd: str) -> Any:
             """Test method"""
@@ -108,12 +108,12 @@ class TestForInRule(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
-            return self.__name
+            return self._name
 
         def run(self, cmd: str) -> Any:
             """Test method"""
@@ -121,7 +121,7 @@ class TestForInRule(unittest.TestCase):
             return "xyz"
 
     @staticmethod
-    def __rule_callback(
+    def _rule_callback(
         context: Optional[Context],
         rule: Union[str, Dict[str, Any]],
     ) -> str:
@@ -134,7 +134,7 @@ class TestForInRule(unittest.TestCase):
         if "eval" in rule:
             return EvalRule().parse(
                 rule_dict=rule,
-                rule_callback=TestForInRule.__rule_callback,
+                rule_callback=TestForInRule._rule_callback,
                 context=context,
             )
 
@@ -169,7 +169,7 @@ class TestForInRule(unittest.TestCase):
                     )
                 ]
             ),
-            rule_callback=TestForInRule.__rule_callback,
+            rule_callback=TestForInRule._rule_callback,
         )
 
         self.assertEqual(
@@ -191,7 +191,7 @@ class TestForInRule(unittest.TestCase):
                     )
                 ]
             ),
-            rule_callback=TestForInRule.__rule_callback,
+            rule_callback=TestForInRule._rule_callback,
         )
 
         self.assertEqual(parsed, "\n\n")
@@ -211,7 +211,7 @@ class TestForInRule(unittest.TestCase):
                         )
                     ]
                 ),
-                rule_callback=TestForInRule.__rule_callback,
+                rule_callback=TestForInRule._rule_callback,
             )
 
     def test_for_in_none_in(self):
@@ -229,7 +229,7 @@ class TestForInRule(unittest.TestCase):
                         )
                     ]
                 ),
-                rule_callback=TestForInRule.__rule_callback,
+                rule_callback=TestForInRule._rule_callback,
             )
 
     def test_for_in_none_block(self):
@@ -251,7 +251,7 @@ class TestForInRule(unittest.TestCase):
                         )
                     ]
                 ),
-                rule_callback=TestForInRule.__rule_callback,
+                rule_callback=TestForInRule._rule_callback,
             )
 
     def test_for_in_none_block_2(self):
@@ -275,7 +275,7 @@ class TestForInRule(unittest.TestCase):
                         )
                     ]
                 ),
-                rule_callback=TestForInRule.__rule_callback,
+                rule_callback=TestForInRule._rule_callback,
             )
 
     def test_for_in_str(self):
@@ -300,7 +300,7 @@ class TestForInRule(unittest.TestCase):
                     )
                 ]
             ),
-            rule_callback=TestForInRule.__rule_callback,
+            rule_callback=TestForInRule._rule_callback,
         )
 
         self.assertEqual(parsed, "x\ny\nz")
@@ -327,7 +327,7 @@ class TestForInRule(unittest.TestCase):
                     )
                 ]
             ),
-            rule_callback=TestForInRule.__rule_callback,
+            rule_callback=TestForInRule._rule_callback,
         )
 
         self.assertEqual(parsed, "text\ntext_1")

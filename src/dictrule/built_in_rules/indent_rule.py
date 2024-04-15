@@ -58,13 +58,13 @@ class IndentRule(Rule):
                 num_spaces (int): The number of spaces for each level of indentation.
             """
 
-            self.__num_spaces = num_spaces
+            self._num_spaces = num_spaces
 
         @property
         def num_spaces(self) -> int:
             """Getter for `num_spaces` property"""
 
-            return self.__num_spaces
+            return self._num_spaces
 
     @dr_property(prefix_matching=True)
     def _indent(self, props: Dict[str, Any]) -> Any:

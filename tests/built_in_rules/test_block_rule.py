@@ -84,7 +84,7 @@ class TestBlockRule(unittest.TestCase):
 
         rule = BlockRule()
 
-        def __rule_callback(
+        def _rule_callback(
             context: Optional[Context],
             rule: Dict[str, Any],
         ) -> str:
@@ -117,7 +117,7 @@ class TestBlockRule(unittest.TestCase):
                     },
                 ]
             },
-            rule_callback=__rule_callback,
+            rule_callback=_rule_callback,
         )
         self.assertEqual(parsed, "eval_1\nprint_2\nlog_3")
 
@@ -126,7 +126,7 @@ class TestBlockRule(unittest.TestCase):
 
         rule = BlockRule()
 
-        def __rule_callback(
+        def _rule_callback(
             context: Optional[Context],
             rule: Union[str, Dict[str, Any]],
         ) -> str:
@@ -171,7 +171,7 @@ class TestBlockRule(unittest.TestCase):
                     None,
                 ]
             },
-            rule_callback=__rule_callback,
+            rule_callback=_rule_callback,
         )
         self.assertEqual(parsed, "eval_1\nprint_2\nlog_3\ntext_4\n\ntext_5\n\ntext_6\n")
 

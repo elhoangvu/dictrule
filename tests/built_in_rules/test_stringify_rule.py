@@ -15,7 +15,7 @@ class TestStringifyRule(unittest.TestCase):
     """Test class"""
 
     @staticmethod
-    def __rule_callback(
+    def _rule_callback(
         context: Optional[Context],
         rule: Union[str, Dict[str, Any]],
     ) -> str:
@@ -38,7 +38,7 @@ class TestStringifyRule(unittest.TestCase):
             rule_dict={
                 "stringify": "text",
             },
-            rule_callback=TestStringifyRule.__rule_callback,
+            rule_callback=TestStringifyRule._rule_callback,
         )
         self.assertEqual(parsed, '"text"')
 
@@ -48,7 +48,7 @@ class TestStringifyRule(unittest.TestCase):
             rule_dict={
                 "stringify": "",
             },
-            rule_callback=TestStringifyRule.__rule_callback,
+            rule_callback=TestStringifyRule._rule_callback,
         )
         self.assertEqual(parsed, '""')
 
@@ -58,7 +58,7 @@ class TestStringifyRule(unittest.TestCase):
             rule_dict={
                 "stringify": None,
             },
-            rule_callback=TestStringifyRule.__rule_callback,
+            rule_callback=TestStringifyRule._rule_callback,
         )
         self.assertEqual(parsed, '""')
 
@@ -70,7 +70,7 @@ class TestStringifyRule(unittest.TestCase):
                     "eval": "123",
                 },
             },
-            rule_callback=TestStringifyRule.__rule_callback,
+            rule_callback=TestStringifyRule._rule_callback,
         )
         self.assertEqual(parsed, '"123"')
 

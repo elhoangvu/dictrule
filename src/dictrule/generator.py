@@ -69,22 +69,22 @@ class Generator:
         if parse_rules is None:
             parse_rules = Generator.STD_RULES
 
-        self.__cache_rules: Dict[str, Rule] = {}
-        self.__gen_rules = list(gen_rules)
-        self.__parse_rules: List[Rule] = []
+        self._cache_rules: Dict[str, Rule] = {}
+        self._gen_rules = list(gen_rules)
+        self._parse_rules: List[Rule] = []
         self.add_parse_rules(parse_rules)
 
     @property
     def parse_rules(self) -> List[Rule]:
         """Getter for `parse_rules` property"""
 
-        return self.__parse_rules
+        return self._parse_rules
 
     @property
     def gen_rules(self) -> List[Union[str, Dict[str, Any]]]:
         """Getter for `gen_rules` property"""
 
-        return self.__gen_rules
+        return self._gen_rules
 
     def add_parse_rule(
         self,
@@ -96,7 +96,7 @@ class Generator:
             rule (Rule): The rule subclass to add.
         """
 
-        self.__parse_rules.append(rule)
+        self._parse_rules.append(rule)
 
     def add_parse_rules(
         self,
@@ -125,8 +125,8 @@ class Generator:
             str: Generated text
         """
 
-        def __rule_from_dict(rule_dict: Dict[str, Any]) -> Rule:
-            rule = self.__parse_rule_from_dict(rule_dict)
+        def _rule_from_dict(rule_dict: Dict[str, Any]) -> Rule:
+            rule = self._parse_rule_from_dict(rule_dict)
             if not rule:
                 pass
 
@@ -135,7 +135,7 @@ class Generator:
 
             return rule
 
-        def __internal_parse_rule(
+        def _internal_parse_rule(
             context: Optional[Context],
             rule: Any,
         ) -> str:
@@ -148,23 +148,23 @@ class Generator:
             if not isinstance(rule, Dict):
                 raise InvalidTypeException(f"Rule {rule} must be a dict")
 
-            found_rule = __rule_from_dict(rule)
+            found_rule = _rule_from_dict(rule)
             parsed = found_rule.parse(
                 rule_dict=rule,
                 context=context,
-                rule_callback=__internal_parse_rule,
+                rule_callback=_internal_parse_rule,
             )
 
             return parsed
 
-        self.__parse_rules.sort(
+        self._parse_rules.sort(
             key=lambda r: len(r.dr_non_optional_props),
             reverse=True,
         )
 
         output: List[str] = []
-        for rule in self.__gen_rules:
-            parsed = __internal_parse_rule(
+        for rule in self._gen_rules:
+            parsed = _internal_parse_rule(
                 context=context,
                 rule=rule,
             )
@@ -172,17 +172,17 @@ class Generator:
 
         return "\n".join(output)
 
-    def __parse_rule_from_dict(
+    def _parse_rule_from_dict(
         self,
         rule_dict: Dict[str, Any],
     ) -> Optional[Rule]:
         dict_keys = set(rule_dict.keys())
-        key = self.__key_from_keys(dict_keys)
-        rule = self.__cache_rules.get(key)
+        key = self._key_from_keys(dict_keys)
+        rule = self._cache_rules.get(key)
         if rule:
             return rule
 
-        for rule in self.__parse_rules:
+        for rule in self._parse_rules:
             props: Set[str] = set()
             for prop in rule.dr_non_optional_props:
                 prop_name, prop_value = prop(rule_dict)
@@ -199,7 +199,7 @@ class Generator:
 
         return None
 
-    def __key_from_keys(
+    def _key_from_keys(
         self,
         keys: Set[str],
     ) -> str:

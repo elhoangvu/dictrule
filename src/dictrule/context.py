@@ -42,7 +42,7 @@ class Context:
             cases (List[Case]): List of `Context.Case` to build the case map
         """
 
-        self.__cases = list(cases)
+        self._cases = list(cases)
         case_map: Dict[str, Context.Case] = {}
         for case in cases:
             if case.name in case_map:
@@ -56,7 +56,7 @@ class Context:
 
             case_map[case.name] = case
 
-        self.__case_map = case_map
+        self._case_map = case_map
 
     @property
     def cases(self) -> List[Case]:
@@ -65,7 +65,7 @@ class Context:
         Returns:
             List[Case]: list of cases
         """
-        return self.__cases
+        return self._cases
 
     @property
     def case_map(self) -> Dict[str, Case]:
@@ -75,7 +75,7 @@ class Context:
             Dict[str, Case]: map of cases [name: str, case: Context.Case]
         """
 
-        return self.__case_map
+        return self._case_map
 
     def get(self, name: str) -> Optional[Case]:
         """Gets the case by name
@@ -88,4 +88,4 @@ class Context:
                 built from `Context` creation
         """
 
-        return self.__case_map.get(name)
+        return self._case_map.get(name)

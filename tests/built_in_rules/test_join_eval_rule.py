@@ -1,9 +1,9 @@
 """JoinEvalRule test"""
 
 from typing import Any
+import unittest
 from dictrule.context import Context
 from dictrule.built_in_rules import JoinEvalRule, EvalRule
-import unittest
 
 
 class TestJoinEvalRule(unittest.TestCase):
@@ -16,12 +16,12 @@ class TestJoinEvalRule(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
-            return self.__name
+            return self._name
 
         def run(self, cmd: str) -> Any:
             """Test method"""
@@ -39,12 +39,12 @@ class TestJoinEvalRule(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
-            return self.__name
+            return self._name
 
         def run(self, cmd: str) -> Any:
             """Test method"""

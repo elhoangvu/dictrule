@@ -89,7 +89,7 @@ class ForInRule(Rule):
         def name(self) -> str:
             """Getter for `name` property"""
 
-            return self.__var_name
+            return self._var_name
 
         @property
         def prefix_matching(self) -> bool:
@@ -111,9 +111,9 @@ class ForInRule(Rule):
                 extra_properties (Dict[str, Any]): A map of variable names and values.
             """
 
-            self.__var_name = str(var_name)
-            self.__var = var
-            self.__extra_properties = dict(extra_properties)
+            self._var_name = str(var_name)
+            self._var = var
+            self._extra_properties = dict(extra_properties)
 
         def run(
             self,
@@ -130,17 +130,17 @@ class ForInRule(Rule):
                 str: The result of the execution.
             """
 
-            var_prefix = self.__var_name + "."
+            var_prefix = self._var_name + "."
             if not cmd.startswith(var_prefix):
-                return self.__var
+                return self._var
 
             properties = cmd.split(".")
             property_value = ""
             extra_prop = ".".join(properties[1:])
-            if extra_prop in self.__extra_properties:
-                property_value = self.__extra_properties[extra_prop]
+            if extra_prop in self._extra_properties:
+                property_value = self._extra_properties[extra_prop]
             else:
-                local_var = self.__var
+                local_var = self._var
                 for prop in properties[1:]:
                     callable_var = getattr(local_var, prop)
                     if callable(callable_var):

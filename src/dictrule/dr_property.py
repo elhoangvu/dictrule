@@ -49,8 +49,8 @@ class dr_property:
                 Defaults to False.
         """
 
-        self.__optional = optional
-        self.__prefix_matching = prefix_matching
+        self._optional = optional
+        self._prefix_matching = prefix_matching
 
     def __call__(
         self,
@@ -61,7 +61,7 @@ class dr_property:
         key = func.__name__[len(dr_property._prefix) :]
         setattr(func, dr_property._flag_key, True)
         setattr(func, dr_property._name_key, key)
-        setattr(func, dr_property._optional_key, self.__optional)
+        setattr(func, dr_property._optional_key, self._optional)
 
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -73,7 +73,7 @@ class dr_property:
             if not isinstance(props, Dict):
                 raise InvalidTypeException(f"First param `{props}` must be a dict")
 
-            if self.__prefix_matching:
+            if self._prefix_matching:
                 for prop, value in props.items():
                     if prop.startswith(key):
                         return (prop, value)

@@ -29,13 +29,13 @@ class TestGenerator(unittest.TestCase):
             self,
             name: str,
         ):
-            self.__name = name
+            self._name = name
 
         @property
         def name(self) -> str:
             """Test method"""
 
-            return self.__name
+            return self._name
 
         def run(self, cmd: str) -> Any:
             """Test method"""

@@ -10,7 +10,7 @@ class TestCommentRule(unittest.TestCase):
     """Test class"""
 
     def setUp(self) -> None:
-        self.__singleline_context = Context(
+        self._singleline_context = Context(
             [
                 CommentRule.ContextCase(
                     singleline=CommentRule.ContextCase.SinglelineComment("# ")
@@ -18,7 +18,7 @@ class TestCommentRule(unittest.TestCase):
             ]
         )
 
-        self.__multiline_context = Context(
+        self._multiline_context = Context(
             [
                 CommentRule.ContextCase(
                     multiline=CommentRule.ContextCase.MultilineComment(
@@ -40,7 +40,7 @@ class TestCommentRule(unittest.TestCase):
                 "comment": "test",
                 "style": "singleline",
             },
-            context=self.__singleline_context,
+            context=self._singleline_context,
             rule_callback=lambda x, y: y if y else "",
         )
         self.assertEqual(parsed, "# test")
@@ -55,7 +55,7 @@ class TestCommentRule(unittest.TestCase):
                     "comment": None,
                     "style": "singleline",
                 },
-                context=self.__singleline_context,
+                context=self._singleline_context,
                 rule_callback=lambda x, y: y if y else "",
             )
 
@@ -68,7 +68,7 @@ class TestCommentRule(unittest.TestCase):
                 rule_dict={
                     "style": "singleline",
                 },
-                context=self.__singleline_context,
+                context=self._singleline_context,
                 rule_callback=lambda x, y: y if y else "",
             )
 
@@ -95,7 +95,7 @@ class TestCommentRule(unittest.TestCase):
             rule_dict={
                 "comment": "test",
             },
-            context=self.__singleline_context,
+            context=self._singleline_context,
             rule_callback=lambda x, y: y if y else "",
         )
         self.assertEqual(parsed, "# test")
@@ -151,7 +151,7 @@ class TestCommentRule(unittest.TestCase):
                     "text_3",
                 ],
             },
-            context=self.__singleline_context,
+            context=self._singleline_context,
             rule_callback=lambda x, y: y if y else "",
         )
         self.assertEqual(parsed, "# text_1\n# text_2\n# text_3")
@@ -165,7 +165,7 @@ class TestCommentRule(unittest.TestCase):
                 "comment": "test",
                 "style": "multiline",
             },
-            context=self.__multiline_context,
+            context=self._multiline_context,
             rule_callback=lambda x, y: y if y else "",
         )
         self.assertEqual(parsed, '"""\n# test\n"""')
@@ -225,7 +225,7 @@ class TestCommentRule(unittest.TestCase):
                     "text_3",
                 ],
             },
-            context=self.__multiline_context,
+            context=self._multiline_context,
             rule_callback=lambda x, y: y if y else "",
         )
         self.assertEqual(parsed, '"""\n# text_1\n# text_2\n# text_3\n"""')
