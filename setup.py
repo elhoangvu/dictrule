@@ -8,7 +8,6 @@ r"""
 """
 
 import os
-import pytest
 from setuptools import setup
 
 about = {}
@@ -57,7 +56,6 @@ if __name__ == "__main__":
             "Topic :: Software Development :: Libraries :: Python Modules",
             "Topic :: Text Processing :: Markup",
         ],
-        cmdclass={"test": pytest},
         project_urls={
             "Documentation": "https://github.com/elhoangvu/dictrule",
             "Source": "https://github.com/elhoangvu/dictrule",
