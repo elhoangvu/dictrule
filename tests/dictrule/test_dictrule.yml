@@ -1,0 +1,22 @@
+- '"""'
+- format_uppercase: {eval: gen.header}
+- '"""'
+- 
+- comment:
+  - inline:
+    - eval: gen.id
+    - '. '
+    - eval: gen.title
+  - inline: ["Creation date: ", eval: gen.date]
+  - inline: ["Author: ", eval: gen.author]
+-
+- indent_0: "class Sample:"
+- indent_1: "def contents(self) -> List[str]:"
+- indent_2: return [
+- indent_3:
+    for: content
+    in: gen.contents
+    block:
+      - inline: [stringify: {eval: content.index}, ","]
+      - inline: [stringify: {eval: content}, ","]
+- indent_2: "]"
