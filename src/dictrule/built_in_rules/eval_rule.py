@@ -175,7 +175,9 @@ class EvalRule(Rule):
 
             eval_rule = self.__evaluators.get(eval_name)
             if not eval_rule:
-                eval_rule = self.__find_eval_by_prefix(eval_name)
+                eval_rule = self.__find_eval_by_prefix(
+                    eval_name=eval_name,
+                )
 
             if not eval_rule:
                 if self.__fallback:
@@ -184,7 +186,7 @@ class EvalRule(Rule):
 
             return eval_rule.run(eval_name)
 
-        @lru_cache
+        @lru_cache(maxsize=1024)
         def __find_eval_by_prefix(
             self,
             eval_name: str,
