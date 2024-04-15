@@ -1,6 +1,12 @@
 """BlockRule test"""
 
-from typing import Optional, Dict, Any
+from typing import (
+    Optional,
+    Union,
+    Dict,
+    Any,
+)
+
 import unittest
 from dictrule.context import Context
 from dictrule.built_in_rules import BlockRule
@@ -122,7 +128,7 @@ class TestBlockRule(unittest.TestCase):
 
         def __rule_callback(
             context: Optional[Context],
-            rule: str | Dict[str, Any],
+            rule: Union[str, Dict[str, Any]],
         ) -> str:
             _ = context
             if not rule:

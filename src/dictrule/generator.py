@@ -12,6 +12,7 @@ from typing import (
     List,
     Dict,
     Set,
+    Union,
     Optional,
 )
 
@@ -54,13 +55,13 @@ class Generator:
 
     def __init__(
         self,
-        gen_rules: List[str | Dict[str, Any]],
+        gen_rules: List[Union[str, Dict[str, Any]]],
         parse_rules: Optional[List[Rule]] = None,
     ):
         """Initialization method for DictRule.
 
         Args:
-            gen_rules (List[str  |  Dict[str, Any]]): List or dictionary of rules
+            gen_rules (List[Union[str, Dict[str, Any]]]): List or dictionary of rules
             parse_rules (Optional[List[Rule]], optional):
                 List of rule parsers bases on `Rule`.
                 Defaults to `DictRule.STD_RULES`.
@@ -80,7 +81,7 @@ class Generator:
         return self.__parse_rules
 
     @property
-    def gen_rules(self) -> List[str | Dict[str, Any]]:
+    def gen_rules(self) -> List[Union[str, Dict[str, Any]]]:
         """Getter for `gen_rules` property"""
 
         return self.__gen_rules

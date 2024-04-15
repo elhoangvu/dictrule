@@ -1,9 +1,14 @@
 """InlineRule test"""
 
-from typing import Dict, Any, Optional
+from typing import (
+    Dict,
+    Any,
+    Union,
+    Optional,
+)
+import unittest
 from dictrule.context import Context
 from dictrule.built_in_rules import InlineRule
-import unittest
 
 
 class TestInlineRule(unittest.TestCase):
@@ -12,7 +17,7 @@ class TestInlineRule(unittest.TestCase):
     @staticmethod
     def __rule_callback(
         context: Optional[Context],
-        rule: str | Dict[str, Any],
+        rule: Union[str, Dict[str, Any]],
     ) -> str:
         _ = context
         if not rule:

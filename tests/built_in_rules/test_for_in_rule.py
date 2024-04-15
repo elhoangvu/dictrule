@@ -1,9 +1,14 @@
 """ForInRule test"""
 
-from typing import Any, Dict, Optional
+from typing import (
+    Any,
+    Dict,
+    Union,
+    Optional,
+)
+import unittest
 from dictrule.context import Context
 from dictrule.built_in_rules import ForInRule, EvalRule
-import unittest
 
 
 class TestForInRule(unittest.TestCase):
@@ -118,7 +123,7 @@ class TestForInRule(unittest.TestCase):
     @staticmethod
     def __rule_callback(
         context: Optional[Context],
-        rule: str | Dict[str, Any],
+        rule: Union[str, Dict[str, Any]],
     ) -> str:
         if not rule:
             return ""

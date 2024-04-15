@@ -3,11 +3,12 @@
 from typing import (
     Dict,
     Any,
+    Union,
     Optional,
 )
+import unittest
 from dictrule.context import Context
 from dictrule.built_in_rules import StringifyRule
-import unittest
 
 
 class TestStringifyRule(unittest.TestCase):
@@ -16,7 +17,7 @@ class TestStringifyRule(unittest.TestCase):
     @staticmethod
     def __rule_callback(
         context: Optional[Context],
-        rule: str | Dict[str, Any],
+        rule: Union[str, Dict[str, Any]],
     ) -> str:
         _ = context
         if not rule:
