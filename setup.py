@@ -7,37 +7,37 @@ r"""
 
 """
 
-import os
 from setuptools import setup
 
-about = {}
-here = os.path.abspath(os.path.dirname(__file__))
-with open(
-    file=os.path.join(here, "src", "dictrule", "__version__.py"),
-    mode="r",
-    encoding="utf-8",
-) as file:
-    exec(file.read(), about)
+__title__ = "dictrule"
+__description__ = "Python rules defined by a dict and a text generator from the rules"
+__url__ = "https://github.com/elhoangvu/dictrule"
+__version__ = "0.1.0"
+__author__ = "Zooxy Le"
+__author_email__ = "elhoangvu@gmail.com"
+__license__ = "Apache-2.0"
+__copyright__ = "Copyright Zooxy Le"
+__readme__ = ""
 
 with open(file="README.md", mode="r", encoding="utf-8") as f:
     readme = f.read()
 
 if __name__ == "__main__":
     setup(
-        name=about["__title__"],
-        version=about["__version__"],
-        description=about["__description__"],
-        long_description=readme,
+        name=__title__,
+        version=__version__,
+        description=__description__,
+        long_description=__readme__,
         long_description_content_type="text/markdown",
-        author=about["__author__"],
-        author_email=about["__author_email__"],
-        url=about["__url__"],
+        author=__author__,
+        author_email=__author_email__,
+        url=__url__,
         packages=[],
         package_data={"": ["LICENSE", "NOTICE"]},
         package_dir={"": "src"},
         include_package_data=True,
         python_requires=">=3.7",
-        license=about["__license__"],
+        license=__license__,
         zip_safe=False,
         classifiers=[
             "Development Status :: 5 - Production/Stable",
