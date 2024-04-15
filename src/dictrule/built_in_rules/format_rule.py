@@ -108,7 +108,7 @@ class FormatRule(Rule):
         if not format_name.startswith("format_"):
             raise InvalidValueException(f"Invalid format {format_name}")
 
-        format_type = FormatRule.Type.from_str(format_name.removeprefix("format_"))
+        format_type = FormatRule.Type.from_str(format_name[len("format_") :])
         if format_type is None:
             raise NoneValueException(
                 "`format:` type {format_type} in invalid with format {format_name}"

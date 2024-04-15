@@ -58,7 +58,7 @@ class dr_property:
         **kwds,
     ) -> Optional[Any]:
         func = args[0]
-        key = func.__name__.removeprefix(dr_property._prefix)
+        key = func.__name__[len(dr_property._prefix) :]
         setattr(func, dr_property._flag_key, True)
         setattr(func, dr_property._name_key, key)
         setattr(func, dr_property._optional_key, self.__optional)

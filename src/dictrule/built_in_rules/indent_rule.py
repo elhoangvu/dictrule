@@ -125,7 +125,7 @@ class IndentRule(Rule):
 
         indent_prefix = indent_spaces
         if indent != "indent":
-            indent_count = indent.removeprefix("indent_")
+            indent_count = indent[len("indent_") :]
             if not indent_count.isdigit():
                 raise InvalidValueException("`indent_` suffix must be a digit str")
 
