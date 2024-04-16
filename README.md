@@ -1,8 +1,9 @@
 # dictrule
 
-[![Python package](https://github.com/elhoangvu/dictrule/actions/workflows/python-package.yml/badge.svg)](https://github.com/elhoangvu/dictrule/actions/workflows/python-package.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/elhoangvu/dictrule/blob/main/LICENSE)
 [![PyPI version](https://badge.fury.io/py/dictrule.svg)](https://badge.fury.io/py/dictrule)
+[![Python package](https://github.com/elhoangvu/dictrule/actions/workflows/python-package.yml/badge.svg)](https://github.com/elhoangvu/dictrule/actions/workflows/python-package.yml)
+[![codecov](https://codecov.io/gh/elhoangvu/dictrule/graph/badge.svg?token=CPE82M9GVB)](https://codecov.io/gh/elhoangvu/dictrule)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/elhoangvu/dictrule/blob/main/LICENSE)
 
 `dictrule` is a simple Python module that helps generate text from defined rules in dictionary form. This module provides popular built-in rules and supports extended external rules for different usages.
 
