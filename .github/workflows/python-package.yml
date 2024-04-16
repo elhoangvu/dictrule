@@ -13,8 +13,7 @@ env:
   PYTHONPATH: src
 
 jobs:
-  build:
-
+  run:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -30,14 +29,29 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 pytest pyyaml
+        python -m pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f requirements-test.txt ]; then pip install -r requirements-test.txt; fi
+    - name: Run ATS
+      uses: codecov/codecov-ats@v0
+      env:
+        CODECOV_STATIC_TOKEN: ${{ secrets.CODECOV_STATIC_TOKEN }}
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - name: Run tests
+      run: pytest --cov=./src --junitxml=./coverage.xml tests/
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: elhoangvu/dictrule
+        fail_ci_if_error: false
+        flags: smart-tests
+        verbose: true
+        plugins: pycoverage,compress-pycoverage
+        files: ./coverage.xml
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pytest
