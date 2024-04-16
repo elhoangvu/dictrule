@@ -1,6 +1,6 @@
 [tool.isort]
 profile = "black"
-src_paths = ["src/dictrule"]
+src_paths = ["src/dictrule", "src/dictrule/built_in_rules"]
 honor_noqa = true
 
 [tool.pytest.ini_options]
