@@ -32,7 +32,7 @@ if __name__ == "__main__":
         author=about["__author__"],
         author_email=about["__author_email__"],
         url=about["__url__"],
-        packages=["dictrule"],
+        packages=["dictrule", "dictrule/built_in_rules"],
         package_data={"": ["LICENSE", "NOTICE"]},
         package_dir={"": "src"},
         include_package_data=True,
