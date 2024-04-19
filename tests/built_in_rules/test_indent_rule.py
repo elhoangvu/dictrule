@@ -1,8 +1,20 @@
 """IndentRule test"""
 
+import unittest
 from dictrule.context import Context
 from dictrule.built_in_rules import IndentRule
-import unittest
+from dictrule.exceptions import (
+    NoneValueException,
+    InvalidTypeException,
+)
+
+
+class NotIndentCase(Context.Case):
+    """Test class"""
+
+    @property
+    def name(self) -> str:
+        return IndentRule.CONTEXT_NAME
 
 
 class TestIndentRule(unittest.TestCase):
@@ -31,6 +43,30 @@ class TestIndentRule(unittest.TestCase):
             rule_callback=lambda x, y: y,
         )
         self.assertEqual(parsed, " " * 4 * 10 + "indent-10")
+
+    def test_none_context(self):
+        """Test method"""
+
+        rule = IndentRule()
+
+        with self.assertRaises(NoneValueException):
+            _ = rule.parse(
+                rule_dict={"indent_1": "indent-1"},
+                context=None,
+                rule_callback=lambda x, y: y,
+            )
+
+    def test_none_context_case(self):
+        """Test method"""
+
+        rule = IndentRule()
+
+        with self.assertRaises(InvalidTypeException):
+            _ = rule.parse(
+                rule_dict={"indent_1": "indent-1"},
+                context=Context([NotIndentCase()]),
+                rule_callback=lambda x, y: y,
+            )
 
     def test_indent_none(self):
         """Test method"""
