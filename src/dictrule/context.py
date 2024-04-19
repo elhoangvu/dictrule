@@ -11,7 +11,6 @@ from abc import (
 )
 
 from .exceptions import (
-    NoneValueException,
     InvalidValueException,
 )
 
@@ -49,10 +48,6 @@ class Context:
                 raise InvalidValueException(
                     f"Found existed {Context.Case.__name__}: {case.name}"
                 )
-
-            name = case.name
-            if name is None:
-                raise NoneValueException(f"Invalid case name `{name}`")
 
             case_map[case.name] = case
 

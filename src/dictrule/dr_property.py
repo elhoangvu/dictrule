@@ -20,14 +20,19 @@ class dr_property:
 
     Properties decorated with `dr_property` must have the `dr_property._prefix` prefix.
 
-    Usage:
-        - Defines:
-            @dr_property(prefix_matching=True, optional=True)
-            def _eval(self, props: Dict[str, Any]) -> Any:
-                pass
-        - Parses:
-            key, value = self._eval(rule_dict)
-
+    Examples:
+    ---------
+    >>> rule_dict = {
+    ...     "eval": "prop.name"
+    ... }
+    >>> @dr_property(prefix_matching=True, optional=True)
+    ... def _eval(self, props: Dict[str, Any]) -> Any:
+    ...     pass
+    >>> key, value = self._eval(rule_dict)
+    >>> print(key)
+    eval
+    >>> print(value)
+    prop.name
     """
 
     _prefix = "_"
