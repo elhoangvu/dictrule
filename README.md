@@ -148,7 +148,7 @@ Building `Context` with `CommentRule.ContextCase` to define the comment style.
 >>> dictrule.Generator({
 ...     "comment": "This is a single-line comment"
 ... }).generate(context)
-"# This is a single-line comment"
+# This is a single-line comment
 
 >>> context = build_multiline_context('"""')
 >>> dictrule.Generator({
