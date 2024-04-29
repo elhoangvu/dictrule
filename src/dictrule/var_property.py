@@ -52,24 +52,24 @@ class var_property:
         self.__doc__ = doc
         self.__name__ = fget.__name__
 
-    def __get__(self, obj, objtype=None):
+    def __get__(self, obj, objtype=None) -> Any:
         if obj is None:
             return self
         if self.fget is None:
             raise AttributeError("unreadable attribute")
         return self.fget(obj)
 
-    def __set__(self, obj, value):
+    def __set__(self, obj, value) -> None:
         if self.fset is None:
             raise AttributeError("can't set attribute")
         self.fset(obj, value)
 
-    def __delete__(self, obj):
+    def __delete__(self, obj) -> None:
         if self.fdel is None:
             raise AttributeError("can't delete attribute")
         self.fdel(obj)
 
-    def getter(self, fget):
+    def getter(self, fget) -> "var_property":
         """Getter decorator
 
         Examples:
@@ -83,7 +83,7 @@ class var_property:
         """
         return type(self)(fget, self.fset, self.fdel, self.__doc__)
 
-    def setter(self, fset):
+    def setter(self, fset) -> "var_property":
         """Setter decorator
 
         Examples:
@@ -94,7 +94,7 @@ class var_property:
         """
         return type(self)(self.fget, fset, self.fdel, self.__doc__)
 
-    def deleter(self, fdel):
+    def deleter(self, fdel) -> "var_property":
         """Deleter decorator
 
         Examples:
