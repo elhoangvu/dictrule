@@ -1,4 +1,4 @@
-"""Variable module"""
+"""EvalObject module"""
 
 from typing import (
     Any,
@@ -8,14 +8,14 @@ from typing import (
     Optional,
 )
 
-from .var_property import var_property
+from .eo_property import eo_property
 
 
-class Variable:
+class EvalObject:
     """Parses instances with nested values.
 
     Supported value types:
-    - An item in Variable.PRIMITIVE_TYPES: [
+    - An item in EvalObject.PRIMITIVE_TYPES: [
         int,
         float,
         str,
@@ -23,20 +23,20 @@ class Variable:
     - list
     - set
     - dict
-    - Variable
+    - EvalObject
 
     Examples:
     ---------
     >>> class Sample:
-    ...     @var_property
+    ...     @eo_property
     ...     def name(self) -> str:
     ...         return "Zooxy"
     ...     def age(self) -> int:
     ...         return 20
-    >>> var = Variable.from_var_property_object(Sample())
-    >>> print(var.name)
+    >>> obj = EvalObject.from_eo_property_object(Sample())
+    >>> print(obj.name)
     Zooxy
-    >>> print(hasattr(var, "age"))
+    >>> print(hasattr(obj, "age"))
     False
     """
 
@@ -49,26 +49,26 @@ class Variable:
     )
 
     @staticmethod
-    def from_var_property_object(
+    def from_eo_property_object(
         obj: Any,
-    ) -> "Variable":
-        """Parses a Variable from obj where properties are decorated with @var_property.
+    ) -> "EvalObject":
+        """Parses a EvalObject from obj where properties are decorated with @eo_property.
 
         Args:
-            obj (Any): The object to parse from @var_property and supported values.
+            obj (Any): The object to parse from @eo_property and supported values.
 
         Returns:
-            Variable: The parsed variable.
+            EvalObject: The parsed object.
         """
 
-        return Variable._parse_value(obj)
+        return EvalObject._parse_value(obj)
 
     def add_object(
         self,
         obj: Any,
         name: str,
     ):
-        """Adds a new object to the Variable instance with a given name.
+        """Adds a new object to the EvalObject instance with a given name.
 
         Args:
             obj (Any): The object to be added.
@@ -95,26 +95,26 @@ class Variable:
             return
 
         parsed_value = None
-        if type(value) in Variable.PRIMITIVE_TYPES or isinstance(value, Variable):
+        if type(value) in EvalObject.PRIMITIVE_TYPES or isinstance(value, EvalObject):
             parsed_value = value
         elif isinstance(value, list):
-            parsed_value = Variable._parse_list(
+            parsed_value = EvalObject._parse_list(
                 value=value,
             )
         elif isinstance(value, set):
-            parsed_value = Variable._parse_set(
+            parsed_value = EvalObject._parse_set(
                 value=value,
             )
         elif isinstance(value, dict):
-            parsed_value = Variable._parse_dict(
+            parsed_value = EvalObject._parse_dict(
                 value=value,
             )
         else:
-            attrs = var_property.properties(value)
+            attrs = eo_property.properties(value)
             if not attrs:
                 return None
 
-            parsed_value = Variable()
+            parsed_value = EvalObject()
             for attr in attrs:
                 setattr(parsed_value, attr.__name__, attr.__get__(value))
 
@@ -135,7 +135,7 @@ class Variable:
 
         new_list: List[Any] = []
         for v in value:
-            parsed_value = Variable._parse_value(v)
+            parsed_value = EvalObject._parse_value(v)
             if parsed_value:
                 new_list.append(parsed_value)
         return new_list
@@ -155,7 +155,7 @@ class Variable:
 
         new_set: Set[Any] = set()
         for v in value:
-            parsed_value = Variable._parse_value(v)
+            parsed_value = EvalObject._parse_value(v)
             if not parsed_value:
                 continue
 
@@ -178,11 +178,11 @@ class Variable:
 
         new_dict: Dict[str, Any] = {}
         for k, v in value.items():
-            parsed_key = Variable._parse_value(k)
+            parsed_key = EvalObject._parse_value(k)
             if not parsed_key:
                 continue
 
-            parsed_value = Variable._parse_value(v)
+            parsed_value = EvalObject._parse_value(v)
             if not parsed_value:
                 continue
 

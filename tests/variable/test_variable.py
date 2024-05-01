@@ -9,177 +9,177 @@ from typing import (
     Dict,
 )
 
-from dictrule.var_property import var_property
-from dictrule.variable import Variable
+from dictrule.eo_property import eo_property
+from dictrule.eval_object import EvalObject
 
 
-class VarProperty:
+class ObjProperty:
     """Test class"""
 
     def __init__(self) -> None:
-        self.var_prop_a = "_prop_a"
-        self.var_prop_b = "_prop_b"
-        self.var_prop_c = "_prop_c"
-        self.var_prop_d = "_prop_d"
+        self.obj_prop_a = "_prop_a"
+        self.obj_prop_b = "_prop_b"
+        self.obj_prop_c = "_prop_c"
+        self.obj_prop_d = "_prop_d"
 
-    @var_property
+    @eo_property
     def prop_a(self):
         """Test method"""
-        return self.var_prop_a
+        return self.obj_prop_a
 
-    @var_property
+    @eo_property
     def prop_b(self):
         """Test method"""
-        return self.var_prop_b
+        return self.obj_prop_b
 
-    @var_property
+    @eo_property
     def prop_c(self):
         """Test method"""
-        return self.var_prop_c
+        return self.obj_prop_c
 
     @property
     def prop_d(self):
         """Test method"""
-        return self.var_prop_d
+        return self.obj_prop_d
 
 
-class ComplexVariable:
+class ComplexObject:
     """Test class"""
 
     def __init__(self) -> None:
-        self.var_prop_a = [
-            VarProperty(),
-            VarProperty(),
-            VarProperty(),
+        self.obj_prop_a = [
+            ObjProperty(),
+            ObjProperty(),
+            ObjProperty(),
         ]
 
-        self.var_prop_b = set(self.var_prop_a)
+        self.obj_prop_b = set(self.obj_prop_a)
 
-        self.var_prop_c = {
-            "1": self.var_prop_a[0],
-            "2": self.var_prop_a[1],
-            "3": self.var_prop_a[2],
+        self.obj_prop_c = {
+            "1": self.obj_prop_a[0],
+            "2": self.obj_prop_a[1],
+            "3": self.obj_prop_a[2],
         }
 
-    @var_property
+    @eo_property
     def prop_a(self):
         """Test method"""
-        return self.var_prop_a
+        return self.obj_prop_a
 
-    @var_property
+    @eo_property
     def prop_b(self):
         """Test method"""
-        return self.var_prop_b
+        return self.obj_prop_b
 
-    @var_property
+    @eo_property
     def prop_c(self):
         """Test method"""
-        return self.var_prop_c
+        return self.obj_prop_c
 
 
-class TestVariable(unittest.TestCase):
+class TestObject(unittest.TestCase):
     """Test class"""
-
-    def test_variable(self):
-        """Test method"""
-
-        var_prop = VarProperty()
-        var = Variable.from_var_property_object(var_prop)
-        self.assertEqual(getattr(var, "prop_a"), var_prop.prop_a)
-        self.assertEqual(getattr(var, "prop_b"), var_prop.prop_b)
-        self.assertEqual(getattr(var, "prop_c"), var_prop.prop_c)
-        self.assertFalse(hasattr(var, "prop_d"))
-
-    def test_list_of_variables(self):
-        """Test method"""
-
-        var_prop_list = [
-            VarProperty(),
-            VarProperty(),
-            VarProperty(),
-        ]
-        var_list: List[Any] = Variable.from_var_property_object(var_prop_list)
-        self.assertEqual(len(var_prop_list), len(var_list))
-        self.assertTrue(isinstance(var_list, list))
-        length = len(var_prop_list)
-        for i in range(length):
-            self.assertEqual(getattr(var_list[i], "prop_a"), var_prop_list[i].prop_a)
-            self.assertEqual(getattr(var_list[i], "prop_b"), var_prop_list[i].prop_b)
-            self.assertEqual(getattr(var_list[i], "prop_c"), var_prop_list[i].prop_c)
-            self.assertFalse(hasattr(var_list[i], "prop_d"))
-
-    def test_set_of_variables(self):
-        """Test method"""
-
-        var_prop_list = [
-            VarProperty(),
-            VarProperty(),
-            VarProperty(),
-        ]
-        var_prop_set = set(var_prop_list)
-        var_set: Set[Any] = Variable.from_var_property_object(var_prop_set)
-        self.assertEqual(len(var_prop_set), len(var_set))
-        self.assertTrue(isinstance(var_set, set))
-
-        index = 0
-        for var in var_set:
-            self.assertEqual(getattr(var, "prop_a"), var_prop_list[index].prop_a)
-            self.assertEqual(getattr(var, "prop_b"), var_prop_list[index].prop_b)
-            self.assertEqual(getattr(var, "prop_c"), var_prop_list[index].prop_c)
-            self.assertFalse(hasattr(var, "prop_d"))
-            index += 1
-
-    def test_dict_of_variables(self):
-        """Test method"""
-
-        var_prop_dict = {
-            "1": VarProperty(),
-            "2": VarProperty(),
-            "3": VarProperty(),
-        }
-        var_dict: Dict[Any, Any] = Variable.from_var_property_object(var_prop_dict)
-        self.assertEqual(len(var_prop_dict), len(var_dict))
-        self.assertTrue(isinstance(var_dict, dict))
-
-        for key, var in var_dict.items():
-            self.assertEqual(getattr(var, "prop_a"), var_prop_dict[key].prop_a)
-            self.assertEqual(getattr(var, "prop_b"), var_prop_dict[key].prop_b)
-            self.assertEqual(getattr(var, "prop_c"), var_prop_dict[key].prop_c)
-            self.assertFalse(hasattr(var, "prop_d"))
 
     def test_object(self):
         """Test method"""
 
-        var_prop = VarProperty()
-        var: Variable = Variable.from_var_property_object(var_prop)
-        self.assertFalse(hasattr(var, "prop_d"))
-        var.add_object(0, "prop_d")
-        self.assertTrue(hasattr(var, "prop_d"))
+        obj_prop = ObjProperty()
+        obj = EvalObject.from_eo_property_object(obj_prop)
+        self.assertEqual(getattr(obj, "prop_a"), obj_prop.prop_a)
+        self.assertEqual(getattr(obj, "prop_b"), obj_prop.prop_b)
+        self.assertEqual(getattr(obj, "prop_c"), obj_prop.prop_c)
+        self.assertFalse(hasattr(obj, "prop_d"))
 
-    def test_complex_variable(self):
+    def test_list_of_objects(self):
         """Test method"""
 
-        complex_var = ComplexVariable()
-        var: ComplexVariable = Variable.from_var_property_object(complex_var)
-        self.assertTrue(isinstance(var.prop_a, list))
-        self.assertTrue(isinstance(var.prop_b, set))
-        self.assertTrue(isinstance(var.prop_c, dict))
-
-        length = len(var.prop_a)
+        obj_prop_list = [
+            ObjProperty(),
+            ObjProperty(),
+            ObjProperty(),
+        ]
+        obj_list: List[Any] = EvalObject.from_eo_property_object(obj_prop_list)
+        self.assertEqual(len(obj_prop_list), len(obj_list))
+        self.assertTrue(isinstance(obj_list, list))
+        length = len(obj_prop_list)
         for i in range(length):
-            self.assertEqual(getattr(var.prop_a[i], "prop_a"), var.prop_a[i].prop_a)
-            self.assertEqual(getattr(var.prop_a[i], "prop_b"), var.prop_a[i].prop_b)
-            self.assertEqual(getattr(var.prop_a[i], "prop_c"), var.prop_a[i].prop_c)
+            self.assertEqual(getattr(obj_list[i], "prop_a"), obj_prop_list[i].prop_a)
+            self.assertEqual(getattr(obj_list[i], "prop_b"), obj_prop_list[i].prop_b)
+            self.assertEqual(getattr(obj_list[i], "prop_c"), obj_prop_list[i].prop_c)
+            self.assertFalse(hasattr(obj_list[i], "prop_d"))
 
-        for var_b in var.prop_b:
-            self.assertEqual(getattr(var_b, "prop_a"), var.prop_a[0].prop_a)
-            self.assertEqual(getattr(var_b, "prop_b"), var.prop_a[0].prop_b)
-            self.assertEqual(getattr(var_b, "prop_c"), var.prop_a[0].prop_c)
+    def test_set_of_objects(self):
+        """Test method"""
 
-        for key, var_c in var.prop_c.items():
-            self.assertEqual(getattr(var_c, "prop_a"), var.prop_c[key].prop_a)
-            self.assertEqual(getattr(var_c, "prop_b"), var.prop_c[key].prop_b)
-            self.assertEqual(getattr(var_c, "prop_c"), var.prop_c[key].prop_c)
+        obj_prop_list = [
+            ObjProperty(),
+            ObjProperty(),
+            ObjProperty(),
+        ]
+        obj_prop_set = set(obj_prop_list)
+        obj_set: Set[Any] = EvalObject.from_eo_property_object(obj_prop_set)
+        self.assertEqual(len(obj_prop_set), len(obj_set))
+        self.assertTrue(isinstance(obj_set, set))
+
+        index = 0
+        for obj in obj_set:
+            self.assertEqual(getattr(obj, "prop_a"), obj_prop_list[index].prop_a)
+            self.assertEqual(getattr(obj, "prop_b"), obj_prop_list[index].prop_b)
+            self.assertEqual(getattr(obj, "prop_c"), obj_prop_list[index].prop_c)
+            self.assertFalse(hasattr(obj, "prop_d"))
+            index += 1
+
+    def test_dict_of_objects(self):
+        """Test method"""
+
+        obj_prop_dict = {
+            "1": ObjProperty(),
+            "2": ObjProperty(),
+            "3": ObjProperty(),
+        }
+        obj_dict: Dict[Any, Any] = EvalObject.from_eo_property_object(obj_prop_dict)
+        self.assertEqual(len(obj_prop_dict), len(obj_dict))
+        self.assertTrue(isinstance(obj_dict, dict))
+
+        for key, obj in obj_dict.items():
+            self.assertEqual(getattr(obj, "prop_a"), obj_prop_dict[key].prop_a)
+            self.assertEqual(getattr(obj, "prop_b"), obj_prop_dict[key].prop_b)
+            self.assertEqual(getattr(obj, "prop_c"), obj_prop_dict[key].prop_c)
+            self.assertFalse(hasattr(obj, "prop_d"))
+
+    def test_add_object(self):
+        """Test method"""
+
+        obj_prop = ObjProperty()
+        obj: EvalObject = EvalObject.from_eo_property_object(obj_prop)
+        self.assertFalse(hasattr(obj, "prop_d"))
+        obj.add_object(0, "prop_d")
+        self.assertTrue(hasattr(obj, "prop_d"))
+
+    def test_complex_objects(self):
+        """Test method"""
+
+        complex_obj = ComplexObject()
+        obj: ComplexObject = EvalObject.from_eo_property_object(complex_obj)
+        self.assertTrue(isinstance(obj.prop_a, list))
+        self.assertTrue(isinstance(obj.prop_b, set))
+        self.assertTrue(isinstance(obj.prop_c, dict))
+
+        length = len(obj.prop_a)
+        for i in range(length):
+            self.assertEqual(getattr(obj.prop_a[i], "prop_a"), obj.prop_a[i].prop_a)
+            self.assertEqual(getattr(obj.prop_a[i], "prop_b"), obj.prop_a[i].prop_b)
+            self.assertEqual(getattr(obj.prop_a[i], "prop_c"), obj.prop_a[i].prop_c)
+
+        for obj_b in obj.prop_b:
+            self.assertEqual(getattr(obj_b, "prop_a"), obj.prop_a[0].prop_a)
+            self.assertEqual(getattr(obj_b, "prop_b"), obj.prop_a[0].prop_b)
+            self.assertEqual(getattr(obj_b, "prop_c"), obj.prop_a[0].prop_c)
+
+        for key, obj_c in obj.prop_c.items():
+            self.assertEqual(getattr(obj_c, "prop_a"), obj.prop_c[key].prop_a)
+            self.assertEqual(getattr(obj_c, "prop_b"), obj.prop_c[key].prop_b)
+            self.assertEqual(getattr(obj_c, "prop_c"), obj.prop_c[key].prop_c)
 
 
 if __name__ == "__main__":

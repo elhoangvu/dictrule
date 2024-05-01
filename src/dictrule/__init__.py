@@ -10,8 +10,8 @@ r"""
 from .generator import Generator
 from .rule import Rule
 from .context import Context
-from .var_property import var_property
-from .variable import Variable
+from .eo_property import eo_property
+from .eval_object import EvalObject
 from .__version__ import (
     __title__,
     __description__,
@@ -57,8 +57,8 @@ __all__ = [
     "JoinBlockRule",
     "JoinEvalRule",
     "FormatRule",
-    "var_property",
-    "Variable",
+    "eo_property",
+    "EvalObject",
     "__title__",
     "__description__",
     "__url__",
