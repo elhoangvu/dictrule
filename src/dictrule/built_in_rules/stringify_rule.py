@@ -18,8 +18,8 @@ class StringifyRule(Rule):
     Examples:
     ---------
     >>> dictrule.Generator({
-    ...    "stringify": "This is the 1st text"
-    ...    "stringify": "This is the 2nd text"
+    ...    "stringify": "This is the 1st text",
+    ...    "stringify": "This is the 2nd text",
     ... }).generate()
     "This is the 1st text"
     "This is the 2nd text"

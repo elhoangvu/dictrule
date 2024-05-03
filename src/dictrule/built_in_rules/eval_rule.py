@@ -26,13 +26,13 @@ class EvalRule(Rule):
     ---------
     >>> git_author = "Zooxy Le"
     >>> dictrule.Generator({
-    ...     "eval": "git_author"
+    ...     "eval": "git_author",
     ... }).generate()
     Zooxy Le
 
     >>> project_id = "123456789"
     >>> dictrule.Generator({
-    ...     "eval": "project_id"
+    ...     "eval": "project_id",
     ... }).generate()
     123456789
     """
@@ -117,19 +117,19 @@ class EvalRule(Rule):
 
         @property
         def name(self) -> str:
-            """Getter for `name` property"""
+            """Get the `name` property"""
 
             return EvalRule.CONTEXT_NAME
 
         @property
         def evaluator_list(self) -> List["EvalRule.Evaluable"]:
-            """Getter for `evaluator_list` property"""
+            """Get the `evaluator_list` property"""
 
             return self._evaluator_list
 
         @property
         def fallback(self) -> Optional["EvalRule.Evaluable"]:
-            """Getter for `fallback` property"""
+            """Get the `fallback` property"""
 
             return self._fallback
 
@@ -138,7 +138,7 @@ class EvalRule(Rule):
             evaluators: List["EvalRule.Evaluable"],
             fallback: Optional["EvalRule.Evaluable"] = None,
         ):
-            """Initialization method for `EvalRule.ContextCase`.
+            """Constructor method for `EvalRule.ContextCase`.
 
             Args:
                 evaluators (List["EvalRule.Evaluable"]): List of evaluators.

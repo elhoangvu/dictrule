@@ -45,7 +45,7 @@ class dr_property:
         optional: bool = False,
         prefix_matching: bool = False,
     ):
-        """Initialization method of `dr_property`
+        """Constructor method of `dr_property`
 
         Args:
             optional (bool, optional): Indicates if the property is optional

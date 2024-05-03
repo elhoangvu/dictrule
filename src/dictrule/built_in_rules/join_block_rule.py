@@ -21,8 +21,8 @@ class JoinBlockRule(BlockRule):
     Examples:
     ---------
     >>> dictrule.Generator({
-    ...     "join": "-"
-    ...     "block": ["This", "is", "the", "snake", "line"]
+    ...     "join": "-",
+    ...     "block": ["This", "is", "the", "snake", "line"],
     ... }).generate()
     This-is-the-snake-line
     """

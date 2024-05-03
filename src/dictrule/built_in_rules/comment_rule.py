@@ -14,7 +14,6 @@ from ..context import Context
 from ..exceptions import (
     NoneValueException,
     InvalidTypeException,
-    InvalidValueException,
 )
 
 
@@ -99,7 +98,7 @@ class CommentRule(Rule):
 
             @property
             def prefix(self) -> str:
-                """Getter for `prefix` property"""
+                """Get the `prefix` property"""
 
                 return self._prefix
 
@@ -131,25 +130,25 @@ class CommentRule(Rule):
 
             @property
             def prefix(self) -> str:
-                """Getter for `prefix` property"""
+                """Get the `prefix` property"""
 
                 return self._prefix
 
             @property
             def open_comment(self) -> str:
-                """Getter for `open_comment` property"""
+                """Get the `open_comment` property"""
 
                 return self._open_comment
 
             @property
             def close_comment(self) -> str:
-                """Getter for `close_comment` property"""
+                """Get the `close_comment` property"""
 
                 return self._close_comment
 
         @property
         def name(self) -> str:
-            """Getter for `name` property"""
+            """Get the `name` property"""
 
             return CommentRule.CONTEXT_NAME
 
@@ -172,13 +171,13 @@ class CommentRule(Rule):
 
         @property
         def singleline(self) -> SinglelineComment:
-            """Getter for `singleline` property"""
+            """Get the `singleline` property"""
 
             return self._singleline
 
         @property
         def multiline(self) -> MultilineComment:
-            """Getter for `multiline` property"""
+            """Get the `multiline` property"""
 
             return self._multiline
 

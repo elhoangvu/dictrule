@@ -23,7 +23,7 @@ class Context:
 
         @property
         def name(self) -> str:
-            """Getter for case name, matching the defined rule
+            """Get the case name, matching the defined rule
 
             Returns:
                 str: A rule name
@@ -35,7 +35,7 @@ class Context:
         self,
         cases: List[Case],
     ) -> None:
-        """Initialization method of `Context` class
+        """Constructor method of `Context` class
 
         Args:
             cases (List[Case]): List of `Context.Case` to build the case map
@@ -55,7 +55,7 @@ class Context:
 
     @property
     def cases(self) -> List[Case]:
-        """Getter for `cases` property
+        """Get the `cases` property
 
         Returns:
             List[Case]: list of cases
@@ -64,7 +64,7 @@ class Context:
 
     @property
     def case_map(self) -> Dict[str, Case]:
-        """Getter for `case_map` property
+        """Get the `case_map` property
 
         Returns:
             Dict[str, Case]: map of cases [name: str, case: Context.Case]

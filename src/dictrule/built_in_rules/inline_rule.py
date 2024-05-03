@@ -21,7 +21,7 @@ class InlineRule(Rule):
     Examples:
     ---------
     >>> dictrule.Generator({
-    ...    "inline": ["This", " is", " the", " text", " in", " a", " line"]
+    ...    "inline": ["This", " is", " the", " text", " in", " a", " line"],
     ... }).generate()
     This is the text in a line
     """

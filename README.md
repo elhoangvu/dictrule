@@ -146,7 +146,7 @@ Building `Context` with `CommentRule.ContextCase` to define the comment style.
 ```python
 >>> context = build_singleline_context("#")
 >>> dictrule.Generator({
-...     "comment": "This is a single-line comment"
+...     "comment": "This is a single-line comment",
 ... }).generate(context)
 # This is a single-line comment
 
@@ -177,13 +177,13 @@ This rule evaluates the value of provied variable or command.
 ```python
 >>> git_author = "Zooxy Le"
 >>> dictrule.Generator({
-...     "eval": "git_author"
+...     "eval": "git_author",
 ... }).generate()
 Zooxy Le
 
 >>> project_id = "123456789"
 >>> dictrule.Generator({
-...     "eval": "project_id"
+...     "eval": "project_id",
 ... }).generate()
 123456789
 ```
@@ -208,11 +208,11 @@ Requires providing a `Context` that includes the necessary information for the r
 ...     Line(content="This is the line_2 content"),
 ... ])
 >>> dictrule.Generator({
-...     "for": "line"
-...     "in": "saved_lines"
+...     "for": "line",
+...     "in": "saved_lines",
 ...     "block: [
 ...         "line.index",
-...         "line.content"
+...         "line.content",
 ...     ]
 ... }).generate()
 1
@@ -235,9 +235,9 @@ This rule formats text according to specified rules. This rule now supports the 
 
 ```python
 >>> dictrule.Generator({
-...     "format_lowercase": "UPPERCASE TITLE"
-...     "format_uppercase": "lowercase content"
-...     "format_upper_head": "camelVariable"
+...     "format_lowercase": "UPPERCASE TITLE",
+...     "format_uppercase": "lowercase content",
+...     "format_upper_head": "camelVariable",
 ... }).generated()
 uppercase title
 LOWERCASE CONTENT
@@ -259,9 +259,9 @@ Defines the number of spaces for text indentation by providing `IndentRule.Conte
 ```python
 >>> context = build_number_spaces_context(4)
 >>> dictrule.Generator({
-...     "class Menu:"
-...     "indent_1": "def content(self):"
-...     "indent_2": "return 'Empty'"
+...     "class Menu:",
+...     "indent_1": "def content(self):",
+...     "indent_2": "return 'Empty'",
 ... }).generate(context)
 class Menu:
     def content(self):
@@ -280,7 +280,7 @@ This rule builds generated text of a list of rules that are in a line.
 
 ```python
 >>> dictrule.Generator({
-...    "inline": ["This", " is", " the", " text", " in", " a", " line"]
+...    "inline": ["This", " is", " the", " text", " in", " a", " line"],
 ... }).generate()
 This is the text in a line
 ```
@@ -298,8 +298,8 @@ This rule joins generated texts for a block of rules by a specified separator.
 
 ```python
 >>> dictrule.Generator({
-...     "join": "-"
-...     "block": ["This", "is", "the", "snake", "line"]
+...     "join": "-",
+...     "block": ["This", "is", "the", "snake", "line"],
 ... }).generate()
 This-is-the-snake-line
 ```
@@ -326,8 +326,8 @@ This rule joins generated texts from the value of `EvalRule` by a specified sepa
 ...     "AC Milan",
 ... ])
 >>> dictrule.Generator({
-...     "join": ", "
-...     "eval": "football_teams"
+...     "join": ", ",
+...     "eval": "football_teams",
 ... }).generate(context)
 Real Madrid, Barcelona, Bayern Munchen, PSG, MC, MU, AC Milan
 ```
@@ -344,8 +344,8 @@ This rule wraps content by quotes.
 
 ```python
 >>> dictrule.Generator({
-...    "stringify": "This is the 1st text"
-...    "stringify": "This is the 2nd text"
+...    "stringify": "This is the 1st text",
+...    "stringify": "This is the 2nd text",
 ... }).generate()
 "This is the 1st text"
 "This is the 2nd text"

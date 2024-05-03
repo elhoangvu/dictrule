@@ -37,11 +37,11 @@ class ForInRule(Rule):
     ...     Line(content="This is the line_2 content"),
     ... ])
     >>> dictrule.Generator({
-    ...     "for": "line"
-    ...     "in": "saved_lines"
+    ...     "for": "line",
+    ...     "in": "saved_lines",
     ...     "block: [
     ...         "line.index",
-    ...         "line.content"
+    ...         "line.content",
     ...     ]
     ... }).generate()
     1
@@ -87,13 +87,13 @@ class ForInRule(Rule):
 
         @property
         def name(self) -> str:
-            """Getter for `name` property"""
+            """Get the `name` property"""
 
             return self._var_name
 
         @property
         def prefix_matching(self) -> bool:
-            """Getter for `prefix_matching` property"""
+            """Get the `prefix_matching` property"""
 
             return True
 

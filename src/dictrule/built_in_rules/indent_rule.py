@@ -27,9 +27,9 @@ class IndentRule(Rule):
     ---------
     >>> context = build_number_spaces_context(4)
     >>> dictrule.Generator({
-    ...     "class Menu:"
-    ...     "indent_1": "def content(self):"
-    ...     "indent_2": "return 'Empty'"
+    ...     "class Menu:",
+    ...     "indent_1": "def content(self):",
+    ...     "indent_2": "return 'Empty'",
     ... }).generate(context)
     class Menu:
         def content(self):
@@ -44,7 +44,7 @@ class IndentRule(Rule):
 
         @property
         def name(self) -> str:
-            """Getter for `name` property"""
+            """Get the `name` property"""
 
             return "indent"
 
@@ -62,7 +62,7 @@ class IndentRule(Rule):
 
         @property
         def num_spaces(self) -> int:
-            """Getter for `num_spaces` property"""
+            """Get the `num_spaces` property"""
 
             return self._num_spaces
 

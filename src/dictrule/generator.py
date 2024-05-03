@@ -58,7 +58,7 @@ class Generator:
         gen_rules: List[Union[str, Dict[str, Any]]],
         parse_rules: Optional[List[Rule]] = None,
     ):
-        """Initialization method for DictRule.
+        """Constructor method for DictRule.
 
         Args:
             gen_rules (List[Union[str, Dict[str, Any]]]): List or dictionary of rules
@@ -76,13 +76,13 @@ class Generator:
 
     @property
     def parse_rules(self) -> List[Rule]:
-        """Getter for `parse_rules` property"""
+        """Get the `parse_rules` property"""
 
         return self._parse_rules
 
     @property
     def gen_rules(self) -> List[Union[str, Dict[str, Any]]]:
-        """Getter for `gen_rules` property"""
+        """Get the `gen_rules` property"""
 
         return self._gen_rules
 

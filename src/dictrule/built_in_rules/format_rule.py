@@ -24,9 +24,9 @@ class FormatRule(Rule):
     Examples:
     ---------
     >>> dictrule.Generator({
-    ...     "format_lowercase": "UPPERCASE TITLE"
-    ...     "format_uppercase": "lowercase content"
-    ...     "format_upper_head": "camelVariable"
+    ...     "format_lowercase": "UPPERCASE TITLE",
+    ...     "format_uppercase": "lowercase content",
+    ...     "format_upper_head": "camelVariable",
     ... }).generated()
     uppercase title
     LOWERCASE CONTENT

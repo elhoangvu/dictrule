@@ -31,8 +31,8 @@ class JoinEvalRule(EvalRule):
     ...     "AC Milan",
     ... ])
     >>> dictrule.Generator({
-    ...     "join": ", "
-    ...     "eval": "football_teams"
+    ...     "join": ", ",
+    ...     "eval": "football_teams",
     ... }).generate(context)
     Real Madrid, Barcelona, Bayern Munchen, PSG, MC, MU, AC Milan
     """
