@@ -7,6 +7,7 @@ from typing import (
     Optional,
 )
 
+import re
 from enum import Enum
 from ..rule import Rule
 from ..dr_property import dr_property
@@ -27,10 +28,18 @@ class FormatRule(Rule):
     ...     "format_lowercase": "UPPERCASE TITLE",
     ...     "format_uppercase": "lowercase content",
     ...     "format_upper_head": "camelVariable",
+    ...     "format_camel_case": "Camel case",
+    ...     "format_pascal_case": "pascal case",
+    ...     "format_kabab_case": "Kebab case",
+    ...     "format_snake_case": "Snake case",
     ... }).generated()
     uppercase title
     LOWERCASE CONTENT
     CamelVariable
+    camelCase
+    PascalCase
+    kebab-case
+    snake_case
     """
 
     @dr_property(prefix_matching=True)
@@ -43,6 +52,10 @@ class FormatRule(Rule):
         LOWERCASE = "lowercase"
         UPPERCASE = "uppercase"
         UPPER_HEAD = "upper_head"
+        CAMEL_CASE = "camel_case"
+        PASCAL_CASE = "pascal_case"
+        KEBAB_CASE = "kebab_case"
+        SNAKE_CASE = "snake_case"
 
         @staticmethod
         def from_str(string: str) -> Optional["FormatRule.Type"]:
@@ -83,6 +96,32 @@ class FormatRule(Rule):
 
             if self == FormatRule.Type.UPPER_HEAD:
                 return (text[0].upper() + text[1:]) if len(text) > 0 else ""
+
+            if self == FormatRule.Type.CAMEL_CASE:
+                words = list(filter(None, re.split(r"[^a-zA-Z0-9]+", text)))
+                return (
+                    words[0][0].lower()
+                    + (words[0][1:] if len(words[0]) > 0 else "")
+                    + "".join(
+                        word[0].upper() + (word[1:] if len(word) > 0 else "")
+                        for word in words[1:]
+                    )
+                )
+
+            if self == FormatRule.Type.PASCAL_CASE:
+                words = list(filter(None, re.split(r"[^a-zA-Z0-9]+", text)))
+                return "".join(
+                    word[0].upper() + (word[1:] if len(word) > 0 else "")
+                    for word in words
+                )
+
+            if self == FormatRule.Type.KEBAB_CASE:
+                kebab_text = re.sub(r"[^a-zA-Z0-9]+", "-", text).strip("-").lower()
+                return kebab_text
+
+            if self == FormatRule.Type.SNAKE_CASE:
+                snake_text = re.sub(r"[^a-zA-Z0-9]+", "_", text).strip("_").lower()
+                return snake_text
 
             return text
 

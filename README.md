@@ -238,10 +238,18 @@ This rule formats text according to specified rules. This rule now supports the 
 ...     "format_lowercase": "UPPERCASE TITLE",
 ...     "format_uppercase": "lowercase content",
 ...     "format_upper_head": "camelVariable",
+...     "format_camel_case": "Camel case",
+...     "format_pascal_case": "pascal case",
+...     "format_kabab_case": "Kebab case",
+...     "format_snake_case": "Snake case",
 ... }).generated()
 uppercase title
 LOWERCASE CONTENT
 CamelVariable
+camelCase
+PascalCase
+kebab-case
+snake_case
 ```
 
 ### IndentRule
