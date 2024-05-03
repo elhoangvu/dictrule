@@ -93,7 +93,7 @@ __Note:__ The value of the variables is depended to current context by `build_co
 
 Refer to my projects using `dictrule` to generate text resources:
 
-- [leetcodegen](https://github.com/elhoangvu/leetcodegen)
+- [lcgen](https://github.com/elhoangvu/lcgen)
 
 ## Installing dictrule
 
@@ -225,11 +225,15 @@ This is the line_2 content
 
 This rule formats text according to specified rules. This rule now supports the following types:
 
-| Key               | Value type       | Value description                                                     |
-| ----------------- | ---------------- | --------------------------------------------------------------------- |
-| format_lowercase  | string/list/dict | A text or rules generated to format text in lowercase.                |
-| format_uppercase  | string/list/dict | A text or rules generated to format text in uppercase.                |
-| format_upper_head | string/list/dict | A text or rules generated to format the first character to uppercase. |
+| Key                | Value type       | Value description                                                       |
+| ------------------ | ---------------- | ----------------------------------------------------------------------- |
+| format_lowercase   | string/list/dict | A text or rules generated to format text in `lowercase`.                |
+| format_uppercase   | string/list/dict | A text or rules generated to format text in `UPPERCASE`.                |
+| format_upper_head  | string/list/dict | A text or rules generated to format the first character to `Uppercase`. |
+| format_camel_case  | string/list/dict | A text or rules generated to format text in `camelCase`.                |
+| format_pascal_case | string/list/dict | A text or rules generated to format text in `PascalCase`.               |
+| format_kebab_case  | string/list/dict | A text or rules generated to format text in `kebab-case`.               |
+| format_snake_case  | string/list/dict | A text or rules generated to format text in `snake_case`.               |
 
 **Example**
 
@@ -364,7 +368,7 @@ This rule wraps content by quotes.
 `dictrule` includes a comprehensive test suite. To run the tests, run:
 
 ```shell
-pytest
+PYTHONPATH=src pytest
 ```
 
 ## Contributing
